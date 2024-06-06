@@ -1,1 +1,0 @@
-# advanetale.github.io
