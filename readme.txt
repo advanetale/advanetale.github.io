@@ -1,15 +1,9 @@
----------------------------------
 
-Thank you for downloading! <3
-
-++ Join our Discord: ++
+Advane Tale благодарит данный дискорд канал!
+Бесплатный шаблон. Создатели:
 https://discord.gg/7wknWX49mj
 
----------------------------------
 
 
-Vesion: Simple-Web-1.0.0
-You can send Bugs and Future-requests in our Discord Server https://discord.gg/7wknWX49mj
+Вы можете найти их по данному описанию: Simple-Web-1.0.0
 
-
----------------------------------
