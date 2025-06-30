@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <title>О сервере - AdvaneTale</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="js/update_mobile_nav.js"></script>
+    <script src="js/main.js"></script>
+    <style>
+        /* Стили для компактной верхней навигации */
+        .header {
+            padding: 10px 0;
+        }
+        
+        .header .logo img {
+            height: 40px;
+            width: auto;
+        }
+        
+        .header .nav-list {
+            gap: 15px;
+        }
+        
+        .header .nav-item a {
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+        
+        /* Анимированный фон для страницы о сервере */
+        .about-page-section {
+            background: linear-gradient(135deg, var(--background-color) 0%, rgba(138, 43, 226, 0.15) 100%);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .about-page-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(138, 43, 226, 0.08) 0%, transparent 70%);
+            z-index: 0;
+            pointer-events: none;
+            animation: rotateBg 45s linear infinite;
+        }
+        
+        .about-page-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(187, 111, 255, 0.07) 0%, transparent 35%),
+                radial-gradient(circle at 90% 80%, rgba(138, 43, 226, 0.07) 0%, transparent 35%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        @keyframes rotateBg {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .about-intro,
+        .seasons-container,
+        .season-card {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Стили для страницы о сервере */
+        .about-page-section {
+            padding: 100px 0;
+        }
+        
+        .about-intro {
+            max-width: 800px;
+            margin: 0 auto 60px;
+            text-align: center;
+        }
+        
+        .about-intro p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+        
+        .seasons-container {
+            margin-top: 50px;
+        }
+        
+        .season-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 50px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .season-header {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .season-title {
+            font-size: 24px;
+            margin: 0;
+            color: #ffffff;
+        }
+        
+        .season-date {
+            font-size: 16px;
+            opacity: 0.8;
+            margin-top: 5px;
+            color: #ffffff;
+        }
+        
+        .season-content {
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+        }
+        
+        .season-image {
+            flex: 1;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .season-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .season-description {
+            flex: 1;
+            color: var(--text-color);
+        }
+        
+        .season-description h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        
+        .season-description p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .season-features {
+            margin-top: 20px;
+        }
+        
+        .season-features h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .features-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .features-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .features-list li:before {
+            content: "✦";
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+        
+        /* Медиа-запросы для адаптивности */
+        @media (min-width: 768px) {
+            .season-content {
+                flex-direction: row;
+                gap: 30px;
+            }
+            
+            .season-image {
+                margin-bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Хедер -->
+        <header class="header">
+            <div class="container" style="padding-left: 5px; max-width: none;">
+                <div class="header-content" style="display: flex; justify-content: space-between; align-items: center; padding: 5px 0; position: relative;">
+                    <div class="logo" style="margin-left: 30px;">
+                        <a href="index.html">
+                            <img src="images/logo.png" alt="AdvaneTale Logo">
+                        </a>
+                    </div>
+                    <nav class="navigation"> 
+                        <ul class="nav-list"> 
+                            <li class="nav-item"><a href="about.html" class="active">О сервере</a></li>
+                            <li class="nav-item"><a href="rules.html">Правила</a></li>
+                            <li class="nav-item"><a href="gallery.html">Галерея</a></li>
+                            <li class="nav-item"><a href="donate.html">Донат</a></li>
+                            <li class="nav-item"><a href="wiki.html">Вики</a></li>
+                            <li class="nav-item"><a href="support.html">Поддержка</a></li>
+                            <li class="nav-item"><a href="join.html">Подать заявку</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <!-- Основной контент страницы -->
+        <section class="about-page-section animated-section">
+            <div class="page-particles">
+                <div class="page-particle"></div>
+                <div class="page-particle"></div>
+                <div class="page-particle"></div>
+                <div class="page-particle"></div>
+                <div class="page-particle"></div>
+            </div>
+            <div class="container">
+                <div class="section-header">
+                    <h1 class="section-title">История AdvaneTale</h1>
+                </div>
+                
+                <div class="about-intro">
+                    <p>AdvaneTale — это уникальный приватный сервер Minecraft с богатой историей, который развивается и совершенствуется с каждым сезоном. Наш проект начался как небольшое сообщество единомышленников, а сегодня превратился в атмосферное игровое пространство с уникальными механиками, захватывающим сюжетом и дружелюбным комьюнити.</p>
+                </div>
+                
+                <div class="seasons-container">
+                    <!-- Сезон 4 (текущий) -->
+                    <div class="season-card">
+                        <div class="season-header">
+                            <h2 class="season-title">AdvaneTale 4</h2>
+                            <div class="season-date">2025</div>
+                        </div>
+                        <div class="season-content">
+                            <div class="season-image">
+                                <img src="images/season4.png" alt="AdvaneTale 4">
+                            </div>
+                            <div class="season-description">
+                                <h3>Предстоящий сезон</h3>
+                                <p>Четвертый сезон AdvaneTale ознаменовал собой новую эру в истории сервера. Мы полностью переработали генерацию мира, включая Незер и Энд, а также добавили новые измерения, чтобы создать уникальный игровой опыт, который невозможно получить в ванильном Minecraft.</p>
+                                <p>Главной особенностью этого сезона стала полноценная сюжетная линия, которая раскрывается по мере исследования мира и выполнения особых заданий. Игроки могут влиять на развитие истории своими действиями, что делает каждое прохождение по-настоящему уникальным.</p>
+                                
+                                <div class="season-features">
+                                    <h4>Ключевые особенности сезона:</h4>
+                                    <ul class="features-list">
+                                        <li>Полноценный сюжет с разветвленной структурой</li>
+                                        <li>Уникальные биомы и структуры</li>
+                                        <li>Счастливые гасты</li>
+                                        <li>Расширенная система достижений</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Сезон 3 -->
+                    <div class="season-card">
+                        <div class="season-header">
+                            <h2 class="season-title">AdvaneTale 3</h2>
+                            <div class="season-date">2025</div>
+                        </div>
+                        <div class="season-content">
+                            <div class="season-image">
+                                <img src="images/season3.png" alt="AdvaneTale 3">
+                            </div>
+                            <div class="season-description">
+                                <h3>Сезон продлился 5 месяцев. Онлайн: 86</h3>
+                                <p>Третий сезон стал периодом активного роста сообщества и более новых механик для сюжета.</p>
+                                <p>Особое внимание было уделено социальному взаимодействию между игроками и администрацией, что привело к неоднозначным результатам.</p>
+                                <p>Несмотря на это, сервер продолжил развиваться и совершенствоваться. Мы провели множество экспериментов и добавили множество новых механик для сюжета.</p>
+                                <div class="season-features">
+                                    <h4>Ключевые особенности сезона:</h4>
+                                    <ul class="features-list">
+                                        <li>Первые гигантские проекты</li>
+                                        <li>Первые выборы</li>
+                                        <li>Еженедельные ивенты</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Сезон 2 -->
+                    <div class="season-card">
+                        <div class="season-header">
+                            <h2 class="season-title">AdvaneTale 2</h2>
+                            <div class="season-date">2024</div>
+                        </div>
+                        <div class="season-content">
+                            <div class="season-image">
+                                <img src="images/season2.png" alt="AdvaneTale 2">
+                            </div>
+                            <div class="season-description">
+                                <h3>Сезон продлился 6 месяцев. Онлайн: 34</h3>
+                                <p>Второй сезон AdvaneTale стал периодом активных экспериментов и поиска уникального пути развития сервера. Мы начали отходить от стандартного ванильного геймплея, добавляя собственные механики и особенности для сюжета.</p>
+                                <p>В этот период сформировалось ядро нашего сообщества — игроки, которые до сих пор составляют основу AdvaneTale и помогают развивать проект своими идеями и предложениями.</p>
+                                <p>Этот сезон был показетелем того, что вне зависимости от количества игроков, сервер может развиваться и совершенствоваться.</p>
+                                <div class="season-features">
+                                    <h4>Ключевые особенности сезона:</h4>
+                                    <ul class="features-list">
+                                        <li>Реалистичная система смены времен года</li>                                      
+                                        <li>Первые кастомные датапаки</li>
+                                        <li>Формирование активного сообщества</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Сезон 1 -->
+                    <div class="season-card">
+                        <div class="season-header">
+                            <h2 class="season-title">AdvaneTale 1</h2>
+                            <div class="season-date">2024</div>
+                        </div>
+                        <div class="season-content">
+                            <div class="season-image">
+                                <img src="images/season1.png" alt="AdvaneTale 1">
+                            </div>
+                            <div class="season-description">
+                                <h3>Сезон продлился 3 месяца. Онлайн: 15</h3>
+                                <p>Первый сезон AdvaneTale начался как небольшой проект для друзей, которые хотели уютное пространство для игры в Minecraft. Сервер был почти ванильным, с минимальными изменениями геймплея.</p>
+                                <p>Несмотря на скромное начало, уже тогда были заложены основные принципы, которые до сих пор определяют наш подход: доступность каждому, дружелюбная атмосфера, уважение к игрокам и постоянное развитие.</p>
+                                
+                                <div class="season-features">
+                                    <h4>Ключевые особенности сезона:</h4>
+                                    <ul class="features-list">
+                                        <li>Почти ванильный геймплей</li>
+                                        <li>Формирование основных принципов сервера</li>
+                                        <li>Начало истории AdvaneTale</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Подвал -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="AdvaneTale Logo">
+                    </div>
+                    <div class="footer-links">
+                        <div class="footer-column">
+                            <h4>Навигация</h4>
+                            <ul>
+                                <li><a href="about.html">О сервере</a></li>
+                                <li><a href="rules.html">Правила</a></li>
+                                <li><a href="gallery.html">Галерея</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Ресурсы</h4>
+                            <ul>
+                                <li><a href="wiki.html">Вики</a></li>
+                                <li><a href="support.html">Поддержка</a></li>
+                                <li><a href="donate.html">Донат</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Социальные сети</h4>
+                            <ul class="social-links">
+                                <li><a href="https://www.tiktok.com/@advanetale" target="_blank"><img src="images/tiktok-icon.png" alt="TikTok"> TikTok</a></li>
+                                <li><a href="https://t.me/advanetale" target="_blank"><img src="images/telegram-icon.png" alt="Telegram"> Telegram</a></li>
+                                <li><a href="https://www.youtube.com/channel/UCdPhry_3fX6NkIFJal7AX_g" target="_blank"><img src="images/youtube-icon.png" alt="YouTube"> YouTube</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p class="copyright">© 2025 AdvaneTale. Все права защищены.</p>
+                    <p class="disclaimer">Not an official Minecraft product. We are in no way affiliated with or endorsed by Mojang Synergies AB, Microsoft Corporation or other rightsholder</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html> 

@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <title>Правила - AdvaneTale</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="js/update_mobile_nav.js"></script>
+    <script src="js/main.js"></script>
+    <style>
+        /* Стили для компактной верхней навигации */
+        .header {
+            padding: 10px 0;
+        }
+        
+        .header .logo img {
+            height: 40px;
+            width: auto;
+        }
+        
+        .header .nav-list {
+            gap: 15px;
+        }
+        
+        .header .nav-item a {
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+
+        /* Анимированный фон для страницы правил */
+        .rules-section {
+            background: linear-gradient(135deg, var(--background-color) 0%, rgba(138, 43, 226, 0.15) 100%);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .rules-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(138, 43, 226, 0.08) 0%, transparent 70%);
+            z-index: 0;
+            pointer-events: none;
+            animation: rotateBg 45s linear infinite;
+        }
+        
+        .rules-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(187, 111, 255, 0.07) 0%, transparent 35%),
+                radial-gradient(circle at 90% 80%, rgba(138, 43, 226, 0.07) 0%, transparent 35%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        @keyframes rotateBg {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .rules-content,
+        .rules-list,
+        .rules-group,
+        .rule-item,
+        .mods-list,
+        .note {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .rules-section {
+            background-color: var(--background-color);
+            padding: 100px 0;
+            padding-top: 90px;
+        }
+        
+        .rules-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .rules-list {
+            margin-top: 30px;
+        }
+        
+        .rules-group {
+            margin-bottom: 40px;
+        }
+        
+        .rules-group-title {
+            font-size: 28px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color-light);
+            padding-bottom: 10px;
+        }
+        
+        .rules-group-description {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: var(--text-color-light);
+        }
+        
+        .rule-item {
+            margin-bottom: 20px;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .rule-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .rule-title {
+            color: var(--primary-color);
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+        
+        .rule-title span {
+            font-weight: 700;
+            color: #ffffff;
+        }
+        
+        .rule-description {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .mods-list {
+            margin-top: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .mods-title {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .mods-description {
+            margin-bottom: 20px;
+            color: var(--text-color-light);
+        }
+        
+        .mods-items {
+            list-style-type: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .mods-items li {
+            position: relative;
+            padding: 12px 12px 12px 30px;
+            background-color: var(--card-bg);
+            border-radius: 6px;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s ease;
+            color: var(--text-color);
+        }
+        
+        .mods-items li:hover {
+            transform: translateY(-3px);
+        }
+        
+        .mods-items li::before {
+            content: '•';
+            position: absolute;
+            left: 12px;
+            color: var(--primary-color-light);
+            font-size: 20px;
+        }
+        
+        .note {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: rgba(187, 111, 255, 0.1);
+            border-left: 4px solid var(--primary-color);
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .note p {
+            color: var(--text-color);
+            font-style: italic;
+        }
+        
+        .go-back {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 40px;
+            color: var(--primary-color);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .go-back svg {
+            margin-right: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .go-back:hover {
+            color: var(--primary-color-light);
+        }
+        
+        .go-back:hover svg {
+            transform: translateX(-5px);
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Хедер -->
+        <header class="header">
+            <div class="container" style="padding-left: 5px; max-width: none;">
+                <div class="header-content" style="display: flex; justify-content: space-between; align-items: center; padding: 5px 0; position: relative;">
+                    <div class="logo" style="margin-left: 30px;">
+                        <a href="index.html">
+                            <img src="images/logo.png" alt="AdvaneTale Logo">
+                        </a>
+                    </div>
+                    <nav class="navigation">
+                        <ul class="nav-list">
+                            <li class="nav-item"><a href="about.html">О сервере</a></li>
+                            <li class="nav-item"><a href="rules.html" class="active">Правила</a></li>
+                            <li class="nav-item"><a href="gallery.html">Галерея</a></li>
+                            <li class="nav-item"><a href="donate.html">Донат</a></li>
+                            <li class="nav-item"><a href="wiki.html">Вики</a></li>
+                            <li class="nav-item"><a href="support.html">Поддержка</a></li>
+                            <li class="nav-item"><a href="join.html">Подать заявку</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <!-- Основной контент страницы -->
+        <section class="rules-section animated-section">
+            <div class="page-particles">
+                <div class="page-particle"></div>
+                <div class="page-particle"></div>
+                <div class="page-particle"></div>
+                <div class="page-particle"></div>
+                <div class="page-particle"></div>
+            </div>
+            <div class="container">
+                <div class="section-header">
+                    <h1 class="section-title">Правила сервера</h1>
+                    <p>ㅤ</p>
+
+                    <p>Оставляя заявку на участие на нашем проекте, пользователь подтверждает свою ознакомленность и безоговорочное согласие с нижеизложенными положениями и правилами игры. Незнание правил не освобождает от ответственности за их нарушение.</p>
+                </div>
+                
+                <div class="rules-content">
+                    <!-- Раздел 1 -->
+                    <div class="rules-group">
+                        <h2 class="rules-group-title">1. Общие правила проекта</h2>
+                        <p class="rules-group-description">Запрещены в любом виде следующие действия и материалы:</p>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>1.1.</span> Пропаганда, демонстрация или поддержка нацизма, фашизма и иных <strong>экстремистских идеологий</strong> и символик.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>1.2.</span> Распространение эротического и аморального контента.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>1.3.</span> Публикация политических, военных и националистических материалов, а также любых материалов, содержащих политический, военный и националистический контекст.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>1.4.</span> <strong>Дискриминация</strong> по признакам расы, цвета кожи, политических, религиозных или иных убеждений, пола, этнического и социального происхождения, имущественного положения, места жительства, языка или любым другим признакам.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>1.5.</span> Подстрекательство к суициду.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>1.6.</span> Угрозы физической расправы или причинение вреда в реальной жизни.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>1.7.</span> Использование <strong>персональных данных другого игрока</strong> без его предварительного согласия.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>1.8.</span> Пропаганда психотропных или наркотических веществ, а также материалов, способствующих их распространению или употреблению.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>1.9.</span> <strong>Оскорбления в любой форме</strong>, направленные на других игроков или третьих лиц.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>1.10.</span> Намеренная дезинформация, а также создание и использование никнейма, схожего с никнеймом другого игрока, с целью <strong>выдачи себя за него и введения в заблуждение</strong>.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>1.11.</span> Осуществление операций купли-продажи <strong>товаров и услуг за неигровой контент</strong> (денежные средства, криптовалюта и т.п.).</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>1.12.</span> <strong>Доксинг:</strong> поиск и публикация персональной или конфиденциальной информации о ком-либо без его согласия.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>1.13.</span> Создание и использование <strong>дополнительных учетных записей</strong> (аккаунтов) с целью обхода установленных ограничений.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>1.14.</span> Нарушение правил сервера, условий использования, правил (Terms of Service) <strong>платформы Twitch.tv.</strong></p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>1.15.</span> Создание и распространение <strong>контента</strong> (рассказов, фанфиков, артов и т.д.) <strong>с участием других игроков</strong> сервера без их предварительного согласия.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>1.16.</span> Поиск и <strong>использование недоработок</strong>, неточностей или "дыр" в правилах сервера с целью получения неправомерной выгоды или избежания ответственности за нарушение правил.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>1.17.</span> <strong>Высказывания, изображения или действия</strong>, которые нарушают личные границы других игроков, включая непристойные выражения, темы сексуального характера и вульгарные комментарии.</p>
+                        </div>
+                        
+                        <p class="rules-group-description">Прочие положения:</p>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>1.18.</span> <strong>Возрастное ограничение</strong> для участия в проекте составляет <strong>15 лет и старше</strong>. В случае выявления факта предоставления недостоверных сведений о возрасте, аккаунт игрока подлежит блокировке.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>1.19.</span> AdvaneTale <strong>не является Role-Play</strong> проектом. Ролевой отыгрыш допустим при условии отсутствия препятствий или дискомфорта для других игроков. Нарушение правил или неуместный РП влечет за собой применение санкций. Жалобы на нарушения РП другими игроками <strong>рассмотрению не подлежат</strong>.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>1.20.</span> Администрация сервера <strong>обладает исключительным правом</strong> принимать решения о применении мер воздействия к любому игроку, не обязуясь объяснять причины своих действий.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>1.21.</span> Администрация сервера <strong>не несет юридической или иной ответственности</strong> за содержание информации и визуальных материалов, распространяемых третьими лицами в процессе игрового взаимодействия, включая коммуникации, осуществляемые в текстовых и голосовых чатах.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Раздел 2 -->
+                    <div class="rules-group">
+                        <h2 class="rules-group-title">2. Правила аккаунта</h2>
+                        <p class="rules-group-description">Запрещенные действия:</p>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>2.1.</span> Использование <strong>любых махинаций и злоупотреблений</strong>, связанных с собственным или чужим аккаунтом.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>2.2.</span> <strong>Передача или приобретение</strong> аккаунтов других игроков.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>2.3.</span> Создание и использование <strong>множественных аккаунтов</strong>, за исключением случаев, явно разрешенных администрацией сервера.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>2.4.</span> Использование скинов, содержащих непристойные, оскорбительные или неприемлемые <strong>изображения, символы или текст</strong>.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>2.5.</span> Использование скинов, оказывающих <strong>негативное воздействие</strong> на других участников сервера или нарушающих их игровой опыт.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>2.6.</span> Использование скинов, содержащих <strong>политический, военный и националистический</strong> контекст.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>2.7.</span> Использование игровых никнеймов и скинов, содержащих <strong>явную рекламную информацию</strong>.</p>
+                        </div>
+                        
+                        <p class="rules-group-description">Прочие положения:</p>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>2.8.</span> Использование модификаций и форков, входящих в список запрещенных, строго запрещено. По вопросам правомерности использования того или иного мода следует <strong>обращаться в поддержку сервера</strong>.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>2.9.</span> Ответственность за все действия, совершенные с использованием учетной записи игрока, <strong>несет владелец данной учетной записи</strong>, независимо от того, кто фактически совершил эти действия.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>2.10.</span> Блокировка (бан) аккаунта может быть на срок от одного дня до бессрочной.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>2.11.</span> В случае удаления игроком своей анкеты, его аккаунт автоматически считается <strong>недействительным на сервере</strong>.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Списки модов -->          
+                    <div class="mods-list">
+                        <h3 class="mods-title">Список запрещенных модов</h3>
+                        <p class="mods-description">Помимо перечисленных ниже модификаций, к использованию запрещены все копии, клоны и форки перечисленных ниже модов, выполняющих те же функции, вне зависимости от изменения названия и изменений в коде.</p>
+                        
+                        <ul class="mods-items">
+                            <li>Авто-тотем модификации (любого вида)</li>
+                            <li>Модификации, выполняющие действия за игрока</li>
+                            <li>ИИ, принтер который ходит за вас и так далее</li>
+                            <li>Чит-модификации (любого вида)</li>
+                            <li>AFKPeace</li>
+                            <li>Aristois</li>
+                            <li>AutoSwitch</li>
+                            <li>AutoClicker</li>
+                            <li>Baritone</li>
+                            <li>Bedrock Miner</li>
+                            <li>Better PVP (все версии)</li>
+                            <li>BetterClicker</li>
+                            <li>Bridging Mod</li>
+                            <li>ClientCommands</li>
+                            <li>CMDCam</li>
+                            <li>Elytra Utilities</li>
+                            <li>FindMe</li>
+                            <li>FreeCam</li>
+                            <li>FullBright</li>
+                            <li>Impact</li>
+                            <li>Inertia</li>
+                            <li>Inventory Plus</li>
+                            <li>Inventory Tabs</li>
+                            <li>InvMove</li>
+                            <li>ItemSwapper</li>
+                            <li>Jello</li>
+                            <li>JEI</li>
+                            <li>LavaClearView</li>
+                            <li>Librarian Trade Finder</li>
+                            <li>MidnightControlsExtra</li>
+                            <li>MultiConnect</li>
+                            <li>NoFog</li>
+                            <li>SeedCracker</li>
+                            <li>Sigma</li>
+                            <li>Trajectory Preview</li>
+                            <li>Tweakeroo</li>
+                            <li>Wall-Jump</li>
+                            <li>Wurst</li>
+                            <li>X-ray модификации (любого вида)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mods-list">
+                        <h3 class="mods-title">Ресурспаки</h3>
+                        <ul class="mods-items">
+                            <li>Чит-модификации (любого вида)</li>
+                            <li>X-ray модификации (любого вида)</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Раздел 3 -->
+                    <div class="rules-group">
+                        <h2 class="rules-group-title">3. Правила общения</h2>
+                        <p class="rules-group-description">Запрещенные действия в общении:</p>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>3.1.</span> <strong>Нарушение</strong> правил сервера, а также <strong>призывы</strong> к их нарушению.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>3.2.</span> Проявление токсичного поведения.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>3.3</span> Преднамеренная <strong>отправка большого количества</strong> однотипных сообщений, не несущих смысловой нагрузки, или сообщений, затрудняющих восприятие информации другими пользователями (спам, флуд).</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>3.4.</span> Реклама или упоминание (включая использование лозунгов) <strong>сторонних игровых серверов</strong>, за исключением серверов мини-игр.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>3.5.</span> Реклама <strong>сторонних ресурсов</strong>, не имеющих отношения к данному проекту.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>3.6.</span> Использование слов, включенных <strong>в список запрещенных</strong>. Запрещаются все вариации данных слов и выражений, в том числе с использованием цензуры или переводом на иностранные языки.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>3.7.</span> <strong>Настойчивое распространение</strong> рекламной информации о магазинах, мероприятиях, проектах и прочих аналогичных объектах.</p>
+                        </div>
+                        
+                        <p class="rules-group-description">Прочие положения:</p>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>3.8.</span> Взаимодействие <strong>с администрацией</strong> сервера осуществляется <strong>исключительно в текстовом формате</strong> через чат поддержки.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>3.9.</span> Основным способом общения на сервере является <strong>текстовый чат.</strong> Настойчивые или агрессивные попытки принуждения других игроков к переходу в голосовое общение могут повлечь за собой ограничение возможности использования чата (мут) или блокировку аккаунта (бан).</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>3.10.</span> Использование голосового чата осуществляется на риск пользователя. Все правила, действующие в текстовом чате, также <strong>распространяются на голосовой чат</strong>.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>3.11.</span> Настоящие правила распространяются на <strong>все формы передачи информации</strong>, используемые на сервере, включая, но не ограничиваясь: локальные и глобальные игровые чаты, голосовые чаты, чаты в мессенджерах, таблички, книги, информационные панели и другие аналогичные средства.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Раздел 4 -->
+                    <div class="rules-group">
+                        <h2 class="rules-group-title">4. Правила игры на сервере:</h2>
+                        <p class="rules-group-description">Запрещенные действия в игровом процессе:</p>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>4.1.</span> <strong>Гриферство, воровство</strong> и <strong>читерство</strong> в любой форме.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>4.2.</span> <strong>Дюпликация (дюп) игровых предметов</strong>, за исключением строительных блоков (гравий, песок, бетон и коврики), ниток (разрешен дюп ниток для упрощения торговли с жителями), а также TNT с помощью сопутствующих механизмов в зонах личных построек.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>4.3.</span> Установка блоков голов в зонах спавна, торговых зонах, хабах и на чужих базах <strong>без предварительного согласия</strong> владельца соответствующей территории (ограничение распространяется на установку в больших количествах).</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>4.4.</span> Строительство <strong>любых</strong> <strong>механизмов-сапрессоров</strong>.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>4.5.</span> Строительство <strong>ледяных дорог в верхнем мире</strong> (исключение составляют гоночные трассы).</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>4.6.</span> Добыча руд, ресурсов и поиск подземелий с использованием модификаций, предоставляющих <strong>нечестное преимущество</strong>.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>4.7.</span> <strong>Порча территории</strong> и возведение в воздухе или водоемах построек, логически <strong>не соответствующих окружающей среде</strong>.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>4.8.</span> Создание <strong>ловушек</strong>, предназначенных для кражи игровых предметов у других игроков.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>4.9.</span> Использование модификации Litematica и ее функции "easyplace" или аналогичных модификаций для строительства мостов в воздухе или получения иного <strong>несправедливого преимущества</strong> в игровом процессе.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>4.10</span> Использование <strong>автокликеров</strong> разрешено при условии, что они не изменяют и не способствуют <strong>изменению положения</strong> мыши, игрока или сущностей, не имеют функционала <strong>автоматической фокусировки</strong> на игрока, сущности или блоки, и обеспечивают одинаковую задержку между каждым кликом. Использование автокликеров, не соответствующих данным требованиям, запрещено.</p>
+                        </div>
+
+                        <div class="rule-item">
+                            <p class="rule-title"><span>4.11</span> <strong>Намеренная помеха</strong> другим игрокам, мешающая им комфортно играть на сервере. К таким действиям относятся: блокирование проходов, создание помех при строительстве, навязчивое преследование и другие действия, умышленно затрудняющие игровой процесс других пользователей.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>4.12</span> <strong>Присвоение себе имущества (лута)</strong>, принадлежавшего умершему игроку. В случае обнаружения указанного имущества, рекомендуем поместить его в сундук или аналогичное хранилище и уведомить владельца о местонахождении.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Раздел 5 -->
+                    <div class="rules-group">
+                        <h2 class="rules-group-title">5. Общие правила серверов</h2>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>5.1.</span> Строительство разрешено <strong>на любой незанятой территории</strong>, за пределами зон спавна и торговых зон. Находясь на территории, принадлежащей другому игроку, необходимо соблюдать установленные им правила.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>5.2.</span> Для установления <strong>права владения</strong> территорией необходимо четко и однозначно обозначить ее <strong>границы с помощью табличек</strong>. Разметка должна недвусмысленно указывать на то, что данная территория занята. По умолчанию, право владения <strong>распространяется на всю высоту мира</strong> (от -64 до 320), однако владелец территории может предоставить другому игроку разрешение на использование части территории на определенной высоте. В случае отсутствия намерений застраивать территорию, необходимо удалить разметку.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>5.3.</span> В случаях возникновения споров о праве владения территорией приоритет отдается игроку, который <strong>первым обозначил территорию</strong> с помощью табличек и блоков.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>5.4.</span> Если территория, находящаяся в собственности игрока, остается незастроенной и игрок не проявляет активности на сервере в течение нескольких недель (без предварительного уведомления администрации), данная территория может быть признана бесхозной.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>5.5.</span> <strong>Возврат утерянных игровых предметов</strong> в случае смерти производится только в исключительных случаях и по решению администрации сервера.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>5.6.</span> Использование <strong>светящегося текста</strong> на табличках оказывает существенное влияние на производительность (FPS). В связи с этим, использование светящихся табличек в общественных зонах и на автоматических фермах <strong>не рекомендуется</strong>. Допускается размещение не более трех светящихся табличек на одну постройку.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Раздел 6 -->
+                    <div class="rules-group">
+                        <h2 class="rules-group-title">6. Правила мира выживания</h2>
+                        <p class="rules-group-description">Общие положения:</p>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>6.1.</span> Мир выживания предназначен для строительства баз и других проектов, организации мероприятий и развития основного сюжета сервера.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>6.2.</span> Территория, занимаемая под строительство, должна находиться на расстоянии <strong>не менее 500 блоков</strong> от зоны спавна и торговой зоны.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>6.3.</span> Любые строительные проекты, планируемые <strong>в зоне спавна</strong>, должны быть предварительно <strong>согласованы с администрацией</strong> сервера и игроками. В случае отсутствия предварительного согласования, данная постройка подлежит удалению.</p>
+                        </div>
+                        
+                        <p class="rules-group-description">Запрещенные действия:</p>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>6.4.</span> Строительство и использование <strong>любых видов ферм</strong>, автоматических <strong>сортировочных систем</strong> и большого количества компонентов из редстоуна. Для данных целей рекомендуется использовать специализированный мир ферм.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>6.5.</span> Создание и эксплуатация <strong>трейдхоллов</strong> (хранение жителей разрешено только в декоративных целях — не более пяти жителей на базе).</p>
+                        </div>
+                        
+                        <p class="rules-group-description">Прочие положения:</p>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>6.6.</span> В данном мире действует <strong>ограничение на количество</strong> одновременно существующих <strong>мобов</strong>, реализуемое с помощью датапака. Попытки обхода данного ограничения строго запрещены.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Раздел 7 -->
+                    <div class="rules-group">
+                        <h2 class="rules-group-title">7. Правила мира ферм</h2>
+                        <p class="rules-group-description">Общие положения:</p>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>7.1.</span> Мир ферм предназначен для строительства как общих, так и индивидуальных ферм, а также для добычи ресурсов.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>7.2.</span> Строительство индивидуальных ферм должно осуществляться с соблюдением требований, обеспечивающих <strong>оптимальную производительность</strong> сервера.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>7.2.</span> Территория, занимаемая под строительство, должна находиться на расстоянии <strong>не менее 200 блоков</strong> от зоны спавна и торговой зоны.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>7.3.</span> Категорически запрещается строительство ферм и трейдхоллов в несколько слоев или с минимальным расстоянием между ними, создающее <strong>избыточную нагрузку на сервер</strong> из-за одновременной прогрузки большого количества ферм и сущностей.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>7.4.</span> При планировании строительства ферм, необходимо <strong>отдавать предпочтение</strong> использованию <strong>общих ферм и трейдхоллов</strong>, а не строительству дублирующих сооружений на собственной базе.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>7.5.</span> В случае строительства сооружений в зоне спавна, они должны иметь <strong>надлежащее оформление.</strong></p>
+                        </div>
+                        
+                        <p class="rules-group-description">Запрещенные действия:</p>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>7.6.</span> Строительство <strong>любых механизмов-сапрессоров</strong>.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>7.7.</span> Использование протяженных <strong>цепочек воронок</strong>, которые могут быть заменены другими решениями без использования компонентов из редстоуна.</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>7.8.</span> Строительство любых <strong>загрузчиков чанков</strong> (Chunk Loader).</p>
+                        </div>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>7.9.</span> <strong>Использование ферм</strong>, принадлежащих другим игрокам, без получения предварительного согласия от владельца фермы или наличия четко выраженного разрешения, зафиксированного в форме книги/таблички, размещенной владельцем фермы.</p>
+                        </div>
+                        
+                        <p class="rules-group-description">Прочие положения:</p>
+                        
+                        <div class="rule-item">
+                            <p class="rule-title"><span>7.10.</span> Поддержание стабильной производительности сервера (TPS) является общей ответственностью всех игроков.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Списки модов -->
+ 
+                    
+                    <div class="note">
+                        <p><strong>Примечание:</strong> Настоящие правила распространяются на все аспекты функционирования проекта AdvaneTale, включая общение в чатах, организованных на платформах социальных сетей.</p>
+                    </div>
+                    
+                    <a href="index.html" class="go-back">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 12H5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Вернуться на главную
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Подвал -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="AdvaneTale Logo">
+                    </div>
+                    <div class="footer-links">
+                        <div class="footer-column">
+                            <h4>Навигация</h4>
+                            <ul>
+                                <li><a href="about.html">О сервере</a></li>
+                                <li><a href="rules.html">Правила</a></li>
+                                <li><a href="gallery.html">Галерея</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Ресурсы</h4>
+                            <ul>
+                                <li><a href="wiki.html">Вики</a></li>
+                                <li><a href="support.html">Поддержка</a></li>
+                                <li><a href="donate.html">Донат</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Социальные сети</h4>
+                            <ul class="social-links">
+                                <li><a href="https://www.tiktok.com/@advanetale" target="_blank"><img src="images/tiktok-icon.png" alt="TikTok"> TikTok</a></li>
+                                <li><a href="https://t.me/advanetale" target="_blank"><img src="images/telegram-icon.png" alt="Telegram"> Telegram</a></li>
+                                <li><a href="https://www.youtube.com/channel/UCdPhry_3fX6NkIFJal7AX_g" target="_blank"><img src="images/youtube-icon.png" alt="YouTube"> YouTube</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p class="copyright">© 2025 AdvaneTale. Все права защищены.</p>
+                    <p class="disclaimer">Not an official Minecraft product. We are in no way affiliated with or endorsed by Mojang Synergies AB, Microsoft Corporation or other rightsholder</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html> 

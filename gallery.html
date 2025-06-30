@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <title>Галерея - AdvaneTale</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="js/update_mobile_nav.js"></script>
+    <script src="js/main.js"></script>
+    <style>
+        /* Стили для компактной верхней навигации */
+        .header {
+            padding: 10px 0;
+        }
+        
+        .header .logo img {
+            height: 40px;
+            width: auto;
+        }
+        
+        .header .nav-list {
+            gap: 15px;
+        }
+        
+        .header .nav-item a {
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+        
+        /* Анимированный фон для страницы галереи */
+        .gallery-section {
+            background: linear-gradient(135deg, var(--background-color) 0%, rgba(138, 43, 226, 0.15) 100%);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .gallery-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(166, 77, 255, 0.15) 0%, rgba(106, 28, 183, 0) 70%);
+            z-index: -1;
+            animation: rotateBg 45s linear infinite;
+        }
+        
+        .gallery-section::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle at center, rgba(232, 62, 140, 0.1) 0%, rgba(138, 43, 226, 0) 70%);
+            z-index: -1;
+            animation: rotateBg 60s linear infinite reverse;
+        }
+        
+        /* Добавляем плавающие частицы для галереи */
+        .gallery-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .gallery-particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.4;
+        }
+        
+        .gallery-particle:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            background: rgba(166, 77, 255, 0.4);
+            animation: floatAbout 20s linear infinite;
+        }
+        
+        .gallery-particle:nth-child(2) {
+            top: 70%;
+            left: 20%;
+            background: rgba(232, 62, 140, 0.3);
+            animation: floatAbout 15s linear infinite 2s;
+        }
+        
+        .gallery-particle:nth-child(3) {
+            top: 30%;
+            left: 80%;
+            background: rgba(166, 77, 255, 0.5);
+            animation: floatAbout 25s linear infinite 1s;
+        }
+        
+        .gallery-particle:nth-child(4) {
+            top: 80%;
+            left: 70%;
+            background: rgba(232, 62, 140, 0.2);
+            animation: floatAbout 18s linear infinite 3s;
+        }
+        
+        .gallery-particle:nth-child(5) {
+            top: 50%;
+            left: 50%;
+            background: rgba(232, 62, 140, 0.4);
+            animation: floatAbout 30s linear infinite 1.5s;
+        }
+        
+        @keyframes rotateBg {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes floatAbout {
+            0% {
+                transform: translateY(0) translateX(0) scale(1);
+            }
+            25% {
+                transform: translateY(-100px) translateX(100px) scale(1.5);
+            }
+            50% {
+                transform: translateY(-50px) translateX(200px) scale(0.8);
+            }
+            75% {
+                transform: translateY(100px) translateX(50px) scale(1.2);
+            }
+            100% {
+                transform: translateY(0) translateX(0) scale(1);
+            }
+        }
+        
+        .gallery-content,
+        .gallery-grid,
+        .gallery-item {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .gallery-section {
+            padding: 100px 0 50px;
+            background-color: var(--background-color);
+        }
+        
+        .gallery-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+        
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            position: relative;
+            aspect-ratio: 16/9;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(138, 43, 226, 0.25);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+        
+        .gallery-item-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            color: #ffffff;
+            z-index: 1;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-item-caption {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .gallery-item-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .gallery-item-desc {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .load-more {
+            display: block;
+            margin: 0 auto;
+        }
+        
+        /* Модальное окно для просмотра изображений */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            overflow: hidden;
+        }
+        
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .modal-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            display: block;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+        }
+        
+        .modal-caption {
+            color: #ffffff;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #ffffff;
+            font-size: 40px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            color: var(--primary-color);
+        }
+        
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 30px;
+            transform: translateY(-50%);
+        }
+        
+        .modal-nav-btn {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        
+        .modal-nav-btn:hover {
+            background-color: var(--primary-color);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Хедер -->
+        <header class="header">
+            <div class="container" style="padding-left: 5px; max-width: none;">
+                <div class="header-content" style="display: flex; justify-content: space-between; align-items: center; padding: 5px 0; position: relative;">
+                    <div class="logo" style="margin-left: 30px;">
+                        <a href="index.html">
+                            <img src="images/logo.png" alt="AdvaneTale Logo">
+                        </a>
+                    </div>
+                    <nav class="navigation">
+                        <ul class="nav-list">
+                            <li class="nav-item"><a href="about.html">О сервере</a></li>
+                            <li class="nav-item"><a href="rules.html">Правила</a></li>
+                            <li class="nav-item"><a href="gallery.html" class="active">Галерея</a></li>
+                            <li class="nav-item"><a href="donate.html">Донат</a></li>
+                            <li class="nav-item"><a href="wiki.html">Вики</a></li>
+                            <li class="nav-item"><a href="support.html">Поддержка</a></li>
+                            <li class="nav-item"><a href="join.html">Подать заявку</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <!-- Галерея -->
+        <section class="gallery-section animated-section">
+            <div class="page-particles">
+                <div class="page-particle"></div>
+                <div class="page-particle"></div>
+                <div class="page-particle"></div>
+                <div class="page-particle"></div>
+                <div class="page-particle"></div>
+            </div>
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Галерея сервера</h2>
+                    <p>ㅤ</p>
+                    <p>Лучшие снимки игрового мира и построек наших игроков</p>
+                </div>
+                
+                <div class="gallery-grid">
+                    <!-- Первый ряд -->
+                    <div class="gallery-item" data-category="landscape">
+                        <img src="images/gallery/1.jpg" alt="Пейзаж">
+                        <div class="gallery-item-caption">
+                            <div class="gallery-item-title">Спавн AdvaneTale 3</div>
+                            <div class="gallery-item-desc">Автор: Pirozxhok</div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-category="build">
+                        <img src="images/gallery/2.jpg" alt="Постройка">
+                        <div class="gallery-item-caption">
+                            <div class="gallery-item-title">Хаб Энд-мира AdvaneTale 3</div>
+                            <div class="gallery-item-desc">Автор: S0WVA</div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-category="event">
+                        <img src="images/gallery/3.jpg" alt="Событие">
+                        <div class="gallery-item-caption">
+                            <div class="gallery-item-title">Лобби AdvaneTale 3</div>
+                            <div class="gallery-item-desc">Автор: S0WVA</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Второй ряд -->
+                    <div class="gallery-item" data-category="player">
+                        <img src="images/gallery/4.jpg" alt="Игроки">
+                        <div class="gallery-item-caption">
+                            <div class="gallery-item-title">Коллизей</div>
+                            <div class="gallery-item-desc">Автор: 34me_</div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-category="landscape">
+                        <img src="images/gallery/5.jpg" alt="Пейзаж">
+                        <div class="gallery-item-caption">
+                            <div class="gallery-item-title">Экспериментальная камера</div>
+                            <div class="gallery-item-desc">Автор: Mr_Tea_Ms, Wiru_C</div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-category="build">
+                        <img src="images/gallery/6.jpg" alt="Постройка">
+                        <div class="gallery-item-caption">
+                            <div class="gallery-item-title">Торговая зона AdvaneTale 2</div>
+                            <div class="gallery-item-desc">Одна из улиц торговой зоны AdvaneTale 2</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Третий ряд -->
+                    <div class="gallery-item" data-category="event">
+                        <img src="images/gallery/7.jpg" alt="Событие">
+                        <div class="gallery-item-caption">
+                            <div class="gallery-item-title">День открытия Энд-мира AdvaneTale 3</div>
+                            <div class="gallery-item-desc">Один из лучших дней в истории сервера</div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-category="player">
+                        <img src="images/gallery/8.jpg" alt="Игроки">
+                        <div class="gallery-item-caption">
+                            <div class="gallery-item-title">Уникальная структура джунглей</div>
+                            <div class="gallery-item-desc">Одна из красивейших структур на AdvaneTale 3</div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-category="landscape">
+                        <img src="images/gallery/9.jpg" alt="Пейзаж">
+                        <div class="gallery-item-caption">
+                            <div class="gallery-item-title">Ивент "Хардкор"</div>
+                            <div class="gallery-item-desc">Игрок ijustseen со своим домом</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Модальное окно для просмотра изображений -->
+        <div class="modal">
+            <span class="modal-close">&times;</span>
+            <div class="modal-content">
+                <img src="" alt="Изображение">
+                <div class="modal-caption">
+                    <h3></h3>
+                    <p></p>
+                </div>
+            </div>
+            <div class="modal-nav">
+                <div class="modal-nav-btn modal-prev">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 19L8 12L15 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="modal-nav-btn modal-next">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Подвал -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="AdvaneTale Logo">
+                    </div>
+                    <div class="footer-links">
+                        <div class="footer-column">
+                            <h4>Навигация</h4>
+                            <ul>
+                                <li><a href="about.html">О сервере</a></li>
+                                <li><a href="rules.html">Правила</a></li>
+                                <li><a href="gallery.html">Галерея</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Ресурсы</h4>
+                            <ul>
+                                <li><a href="wiki.html">Вики</a></li>
+                                <li><a href="support.html">Поддержка</a></li>
+                                <li><a href="donate.html">Донат</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Социальные сети</h4>
+                            <ul class="social-links">
+                                <li><a href="https://www.tiktok.com/@advanetale" target="_blank"><img src="images/tiktok-icon.png" alt="TikTok"> TikTok</a></li>
+                                <li><a href="https://t.me/advanetale" target="_blank"><img src="images/telegram-icon.png" alt="Telegram"> Telegram</a></li>
+                                <li><a href="https://www.youtube.com/channel/UCdPhry_3fX6NkIFJal7AX_g" target="_blank"><img src="images/youtube-icon.png" alt="YouTube"> YouTube</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p class="copyright">© 2025 AdvaneTale. Все права защищены.</p>
+                    <p class="disclaimer">Not an official Minecraft product. We are in no way affiliated with or endorsed by Mojang Synergies AB, Microsoft Corporation or other rightsholder</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Скрипт для работы галереи
+        document.addEventListener('DOMContentLoaded', function() {
+            // Модальное окно для просмотра изображений
+            const modal = document.querySelector('.modal');
+            const modalImg = document.querySelector('.modal-content img');
+            const modalCaption = document.querySelector('.modal-content .modal-caption');
+            const modalClose = document.querySelector('.modal-close');
+            const modalPrev = document.querySelector('.modal-prev');
+            const modalNext = document.querySelector('.modal-next');
+            
+            let currentIndex = 0;
+            const visibleItems = () => Array.from(document.querySelectorAll('.gallery-item')).filter(item => item.style.display !== 'none');
+            
+            // Открытие модального окна
+            visibleItems().forEach(item => {
+                item.addEventListener('click', function() {
+                    const img = this.querySelector('img');
+                    const title = this.querySelector('.gallery-item-title').textContent;
+                    const desc = this.querySelector('.gallery-item-desc').textContent;
+                    
+                    modalImg.src = img.src;
+                    modalCaption.querySelector('h3').textContent = title;
+                    modalCaption.querySelector('p').textContent = desc;
+                    
+                    modal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Запоминаем индекс текущего изображения
+                    currentIndex = Array.from(visibleItems()).indexOf(this);
+                });
+            });
+            
+            // Закрытие модального окна
+            modalClose.addEventListener('click', function() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Навигация между изображениями
+            modalPrev.addEventListener('click', function() {
+                const items = visibleItems();
+                currentIndex = (currentIndex - 1 + items.length) % items.length;
+                updateModal(items[currentIndex]);
+            });
+            
+            modalNext.addEventListener('click', function() {
+                const items = visibleItems();
+                currentIndex = (currentIndex + 1) % items.length;
+                updateModal(items[currentIndex]);
+            });
+            
+            function updateModal(item) {
+                const img = item.querySelector('img');
+                const title = item.querySelector('.gallery-item-title').textContent;
+                const desc = item.querySelector('.gallery-item-desc').textContent;
+                
+                modalImg.src = img.src;
+                modalCaption.querySelector('h3').textContent = title;
+                modalCaption.querySelector('p').textContent = desc;
+            }
+            
+            // Закрытие модального окна при клике вне изображения
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

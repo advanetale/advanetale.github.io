@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <title>AdvaneTale - Приватный сервер для игры Minecraft</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="js/update_mobile_nav.js"></script>
+    <script src="js/main.js"></script>
+    <style>
+        /* Стили для компактной верхней навигации */
+        .header {
+            padding: 10px 0;
+        }
+        
+        .header .logo img {
+            height: 40px;
+            width: auto;
+        }
+        
+        .header .nav-list {
+            gap: 15px;
+        }
+        
+        .header .nav-item a {
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+        
+        /* Стили для FAQ секции */
+        .faq-section {
+            background-color: var(--background-color);
+            padding: 80px 0;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .faq-question {
+            padding: 15px 20px;
+            background-color: var(--primary-color);
+            color: #ffffff;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background-color: var(--primary-color-light);
+        }
+        
+        .faq-answer {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-answer.active {
+            padding: 20px;
+            max-height: 1000px;
+        }
+        
+        .faq-answer p {
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        .toggle-icon {
+            font-size: 20px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+        
+        .section-title {
+            color: #ffffff;
+        }
+
+        .feature-title {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Хедер -->
+        <header class="header">
+            <div class="container" style="padding-left: 5px; max-width: none;">
+                <div class="header-content" style="display: flex; justify-content: space-between; align-items: center; padding: 5px 0; position: relative;">
+                    <div class="logo" style="margin-left: 30px;">
+                        <a href="index.html">
+                            <img src="images/logo.png" alt="AdvaneTale Logo">
+                        </a>
+                    </div>
+                    <nav class="navigation">
+                        <ul class="nav-list" style="gap: 15px;">
+                            <li class="nav-item"><a href="about.html">О сервере</a></li>
+                            <li class="nav-item"><a href="rules.html">Правила</a></li>
+                            <li class="nav-item"><a href="gallery.html">Галерея</a></li>
+                            <li class="nav-item"><a href="donate.html">Донат</a></li>
+                            <li class="nav-item"><a href="wiki.html">Вики</a></li>
+                            <li class="nav-item"><a href="support.html">Поддержка</a></li>
+                            <li class="nav-item"><a href="join.html">Подать заявку</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <!-- Главный экран -->
+        <div class="hero">
+            <div class="hero-bg-animation"></div>
+            <div class="hero-particles">
+                <div class="hero-particle"></div>
+                <div class="hero-particle"></div>
+                <div class="hero-particle"></div>
+                <div class="hero-particle"></div>
+                <div class="hero-particle"></div>
+                <div class="hero-particle"></div>
+                <div class="hero-particle"></div>
+                <div class="hero-particle"></div>
+            </div>
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="main-title">AdvaneTale</h1>
+                    <p class="version">Версия 1.21.7 ✦ Java Edition</p>
+                    <p class="main-description">Бесплатный приватный сервер с безграничными возможностями для творчества и приключений</p>
+                    <div class="cta-buttons">
+                        <a href="join.html" class="btn primary-btn">Оставить заявку</a>
+                        <a href="#trailer" class="btn secondary-btn">Смотреть трейлер</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Секция о сервере -->
+        <section id="about" class="about-section">
+            <div class="about-particles">
+                <div class="about-particle"></div>
+                <div class="about-particle"></div>
+                <div class="about-particle"></div>
+                <div class="about-particle"></div>
+                <div class="about-particle"></div>
+            </div>
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">О нашем сервере</h2>
+                </div>
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="images/about.png" alt="Мир Minecraft">
+                    </div>
+                    <div class="about-text">
+                        <p>AdvaneTale — это уникальный приватный сервер Minecraft, доступный всем желающим абсолютно бесплатно. Мы бережно храним дух ванильной игры, добавляя к нему особую атмосферу и качественные улучшения, которые делают ваш игровой опыт поистине неповторимым.</p>
+                        <p>Набор на новый сезон открыт! Мы долго ждали этого момента. В новом сезоне нас ждут множество уникальных обновлений: новая генерация мира, включая Незер и Энд, реалистичная смена сезонов года, полноценный сюжет и многое другое!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция с особенностями -->
+        <section id="features" class="features-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Почему мы?</h2>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <img src="images/free-icon.png" alt="Бесплатно">
+                        </div>
+                        <h3 class="feature-title">Бесплатно</h3>
+                        <p class="feature-description">Проект обеспечивает возможность бесплатной проходки для всех имеющих лицензионную версию Minecraft. Для нелицензионных версий предусмотрена возможность покупки проходки</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <img src="images/story-icon.png" alt="История мира">
+                        </div>
+                        <h3 class="feature-title">История мира</h3>
+                        <p class="feature-description">AdvaneTale предлагает уникальную возможность погрузиться в захватывающий сюжет. Это позволяет взглянуть на привычный мир Minecraft под совершенно новым углом</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <img src="images/unique-icon.png" alt="Уникальность">
+                        </div>
+                        <h3 class="feature-title">Уникальность</h3>
+                        <p class="feature-description">Отличительной чертой сервера является внедрение эксклюзивных механик. Полностью интегрированная в классическую версию Minecraft, без использования модификаций</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция с трейлером -->
+        <section id="trailer" class="trailer-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Трейлер AdvaneTale 4</h2>
+                </div>
+                <div class="video-container">
+                    <div class="video-placeholder">
+                        <iframe width="970" height="550" src="https://www.youtube.com/embed/0oDEp8uRNiM" title="ТРЕЙЛЕР ПРИВАТНОГО МАЙНКРАФТ СЕРВЕРА | AdvaneTale 4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Подвал -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="AdvaneTale Logo">
+                    </div>
+                    <div class="footer-links">
+                        <div class="footer-column">
+                            <h4>Навигация</h4>
+                            <ul>
+                                <li><a href="about.html">О сервере</a></li>
+                                <li><a href="rules.html">Правила</a></li>
+                                <li><a href="gallery.html">Галерея</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Ресурсы</h4>
+                            <ul>
+                                <li><a href="wiki.html">Вики</a></li>
+                                <li><a href="support.html">Поддержка</a></li>
+                                <li><a href="donate.html">Донат</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Социальные сети</h4>
+                            <ul class="social-links">
+                                <li><a href="https://www.tiktok.com/@advanetale" target="_blank"><img src="images/tiktok-icon.png" alt="TikTok"> TikTok</a></li>
+                                <li><a href="https://t.me/advanetale" target="_blank"><img src="images/telegram-icon.png" alt="Telegram"> Telegram</a></li>
+                                <li><a href="https://www.youtube.com/channel/UCdPhry_3fX6NkIFJal7AX_g" target="_blank"><img src="images/youtube-icon.png" alt="YouTube"> YouTube</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p class="copyright">© 2025 AdvaneTale. Все права защищены.</p>
+                    <p class="disclaimer">Not an official Minecraft product. We are in no way affiliated with or endorsed by Mojang Synergies AB, Microsoft Corporation or other rightsholder</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html> 

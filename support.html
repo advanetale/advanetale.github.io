@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <title>Поддержка - AdvaneTale</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="js/update_mobile_nav.js"></script>
+    <script src="js/main.js"></script>
+    <style>
+        /* Стили для компактной верхней навигации */
+        .header {
+            padding: 10px 0;
+        }
+        
+        .header .logo img {
+            height: 40px;
+            width: auto;
+        }
+        
+        .header .nav-list {
+            gap: 15px;
+        }
+        
+        .header .nav-item a {
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+
+        /* Анимированный фон для страницы поддержки */
+        .support-section {
+            background: linear-gradient(135deg, var(--background-color) 0%, rgba(138, 43, 226, 0.15) 100%);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .support-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(138, 43, 226, 0.08) 0%, transparent 70%);
+            z-index: 0;
+            pointer-events: none;
+            animation: rotateBg 45s linear infinite;
+        }
+        
+        .support-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(187, 111, 255, 0.07) 0%, transparent 35%),
+                radial-gradient(circle at 90% 80%, rgba(138, 43, 226, 0.07) 0%, transparent 35%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        @keyframes rotateBg {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .section-header,
+        .support-content,
+        .support-info,
+        .contact-methods,
+        .support-hours,
+        .faq-section,
+        .faq-item {
+            position: relative;
+            z-index: 2;
+        }
+
+        .support-section {
+            background-color: var(--background-color);
+            padding: 100px 0;
+            padding-top: 90px;
+        }
+        
+        .support-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .support-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .support-form-container {
+            flex: 1.5;
+            min-width: 300px;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        .support-title {
+            color: var(--primary-color);
+            font-size: 24px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color-light);
+        }
+        
+        .support-description {
+            margin-bottom: 30px;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+        
+        .contact-methods {
+            margin-bottom: 30px;
+        }
+        
+        .contact-method {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            background-color: var(--card-bg);
+            padding: 15px;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .contact-method:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(187, 111, 255, 0.2);
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: #ffffff;
+            font-size: 20px;
+        }
+        
+        .contact-details h4 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .contact-details p, .contact-details a {
+            color: var(--text-color);
+            text-decoration: none;
+        }
+        
+        .contact-details a:hover {
+            color: var(--primary-color-light);
+            text-decoration: underline;
+        }
+        
+        .faq-section {
+            margin-top: 40px;
+        }
+        
+        .support-faq-title {
+            font-size: 28px;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            position: relative;
+            border-bottom: 2px solid var(--primary-color-light);
+        }
+        
+        .support-faq-title:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-color), var(--primary-color-light));
+            border-radius: 2px;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 15px 20px;
+            background-color: var(--primary-color);
+            color: #ffffff;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+        
+        .faq-question:hover {
+            background-color: var(--primary-color-light);
+        }
+        
+        .faq-answer {
+            padding: 20px;
+            display: none;
+            border-top: 1px solid rgba(187, 111, 255, 0.2);
+            color: var(--text-color);
+        }
+        
+        .faq-answer.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--gray);
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(187, 111, 255, 0.3);
+            outline: none;
+        }
+        
+        textarea.form-control {
+            resize: vertical;
+            min-height: 150px;
+        }
+        
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23a64dff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 16px;
+        }
+        
+        .btn-submit {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+        }
+        
+        .btn-submit:hover {
+            background-color: var(--primary-color-light);
+            transform: translateY(-3px);
+        }
+        
+        .support-hours {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: var(--primary-color);
+            border-radius: 10px;
+            color: #ffffff;
+        }
+        
+        .support-hours h4 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .support-hours p {
+            margin-bottom: 10px;
+        }
+        
+        .support-hours strong {
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .support-content {
+                flex-direction: column;
+            }
+            
+            .support-info, .support-form-container {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Хедер -->
+        <header class="header">
+            <div class="container" style="padding-left: 5px; max-width: none;">
+                <div class="header-content" style="display: flex; justify-content: space-between; align-items: center; padding: 5px 0; position: relative;">
+                    <div class="logo" style="margin-left: 30px;">
+                        <a href="index.html">
+                            <img src="images/logo.png" alt="AdvaneTale Logo">
+                        </a>
+                    </div>
+                    <nav class="navigation">
+                        <ul class="nav-list">
+                            <li class="nav-item"><a href="about.html">О сервере</a></li>
+                            <li class="nav-item"><a href="rules.html">Правила</a></li>
+                            <li class="nav-item"><a href="gallery.html">Галерея</a></li>
+                            <li class="nav-item"><a href="donate.html">Донат</a></li>
+                            <li class="nav-item"><a href="wiki.html">Вики</a></li>
+                            <li class="nav-item"><a href="support.html" class="active">Поддержка</a></li>
+                            <li class="nav-item"><a href="join.html">Подать заявку</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <!-- Основной контент страницы поддержки -->
+        <section class="support-section animated-section">
+            <div class="page-particles">
+                <div class="page-particle"></div>
+                <div class="page-particle"></div>
+                <div class="page-particle"></div>
+                <div class="page-particle"></div>
+                <div class="page-particle"></div>
+            </div>
+            <div class="container">
+                <div class="section-header">
+                    <h1 class="section-title">Поддержка</h1>
+                    <p>ㅤ</p>
+                    <p>Мы всегда готовы помочь с любыми вопросами, связанными с нашим сервером</p>
+                </div>
+                
+                <div class="support-content">
+                    <div class="support-info" style="flex: 1; width: 100%; max-width: 800px; margin: 0 auto;">
+                        <h3 class="support-title">Как с нами связаться</h3>
+                        <p class="support-description">Если у вас возникли вопросы или проблемы, связанные с сервером AdvaneTale, вы можете связаться с нашей командой поддержки через Telegram:</p>
+                        
+                        <div class="contact-methods">                            
+                            <div class="contact-method">
+                                <div class="contact-icon">
+                                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                                        <path d="M9.78,18.65L10.06,14.42L17.74,7.5C18.08,7.19 17.67,7.04 17.22,7.31L7.74,13.3L3.64,12C2.76,11.75 2.75,11.14 3.84,10.7L19.81,4.54C20.54,4.21 21.24,4.72 20.96,5.84L18.24,18.65C18.05,19.56 17.5,19.78 16.74,19.36L12.6,16.3L10.61,18.23C10.38,18.46 10.19,18.65 9.78,18.65Z"/>
+                                    </svg>
+                                </div>
+                                <div class="contact-details">
+                                    <h4>Telegram</h4>
+                                    <a href="https://t.me/advanetale_support" target="_blank">@advanetale_support</a>
+                                    <p>Поддержка сервера AdvaneTale</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="support-hours">
+                            <h4 class="white-text">Часы работы поддержки</h4>
+                            <p class="white-text"><strong>Пн-Пт:</strong> 10:00 - 18:00 (МСК)</p>
+                            <p class="white-text"><strong>Сб-Вс:</strong> 12:00 - 20:00 (МСК)</p>
+                            <p class="white-text"><strong>Важно:</strong> ответы могут быть с задержкой.</p>
+                        </div>
+                        
+                        <div class="faq-section">
+                            <h3 class="support-title">Часто задаваемые вопросы</h3>
+                            
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    Какая версия Minecraft нужна для игры?
+                                    <span class="toggle-icon">+</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Для игры на сервере AdvaneTale необходима версия Minecraft 1.21.7 Java Edition.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    Что делать, если я не могу подключиться к серверу?
+                                    <span class="toggle-icon">+</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Если у вас возникают проблемы с подключением, проверьте следующее:</p>
+                                    <ul>
+                                        <li>- Правильность введенного IP-адреса сервера;</li>
+                                        <li>- Соответствие вашего игрового никнейма в Minecraft;</li>
+                                        <li>- Работоспособность вашего интернет-соединения;</li>
+                                        <li>- Статус сервера (возможны технические работы).</li>
+                                    </ul>
+                                    <p>Если проблема не решается, обратитесь в поддержку с подробным описанием ситуации.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    Как сообщить о нарушении правил?
+                                    <span class="toggle-icon">+</span>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Если вы стали свидетелем нарушения правил сервера, вы можете сообщить об этом через Telegram поддержки.</p>
+                                    <p>При сообщении о нарушении, предоставьте как можно больше информации: никнейм нарушителя, время и дату происшествия, скриншоты или видео нарушения (если есть).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Подвал -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="AdvaneTale Logo">
+                    </div>
+                    <div class="footer-links">
+                        <div class="footer-column">
+                            <h4>Навигация</h4>
+                            <ul>
+                                <li><a href="about.html">О сервере</a></li>
+                                <li><a href="rules.html">Правила</a></li>
+                                <li><a href="gallery.html">Галерея</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Ресурсы</h4>
+                            <ul>
+                                <li><a href="wiki.html">Вики</a></li>
+                                <li><a href="support.html">Поддержка</a></li>
+                                <li><a href="donate.html">Донат</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Социальные сети</h4>
+                            <ul class="social-links">
+                                <li><a href="https://www.tiktok.com/@advanetale" target="_blank"><img src="images/tiktok-icon.png" alt="TikTok"> TikTok</a></li>
+                                <li><a href="https://t.me/advanetale" target="_blank"><img src="images/telegram-icon.png" alt="Telegram"> Telegram</a></li>
+                                <li><a href="https://www.youtube.com/channel/UCdPhry_3fX6NkIFJal7AX_g" target="_blank"><img src="images/youtube-icon.png" alt="YouTube"> YouTube</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p class="copyright">© 2025 AdvaneTale. Все права защищены.</p>
+                    <p class="disclaimer">Not an official Minecraft product. We are in no way affiliated with or endorsed by Mojang Synergies AB, Microsoft Corporation or other rightsholder</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Скрипт для аккордеона FAQ
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const isActive = answer.classList.contains('active');
+                    
+                    // Закрываем все ответы
+                    document.querySelectorAll('.faq-answer').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // Сбрасываем все иконки
+                    document.querySelectorAll('.toggle-icon').forEach(icon => {
+                        icon.textContent = '+';
+                    });
+                    
+                    // Если текущий ответ не был активен, открываем его
+                    if (!isActive) {
+                        answer.classList.add('active');
+                        this.querySelector('.toggle-icon').textContent = '−';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

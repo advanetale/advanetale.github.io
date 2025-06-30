@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /index.html
+Allow: /
+Disallow: /css/
+Disallow: /js/
+Disallow: /.htaccess
+Disallow: /README.md
+Disallow: /donate.html
+Disallow: /gallery.html
+Disallow: /rules.html
+Disallow: /support.html
+Disallow: /wiki.html
+Disallow: /images/
+
+Sitemap: https://advanetale.site/sitemap.xml 
