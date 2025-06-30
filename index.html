@@ -98,6 +98,53 @@
         .feature-title {
             color: #ffffff;
         }
+
+        @media screen and (max-width: 600px) {
+            .hero-content {
+                max-width: 95vw;
+                min-width: 95vw;
+                margin: 0 auto;
+                padding-left: 16px;
+                padding-right: 16px;
+                text-align: center;
+                box-sizing: border-box;
+            }
+            .main-title {
+                font-size: 2.2em;
+                word-break: break-word;
+            }
+            .main-description, .version {
+                word-break: break-word;
+            }
+            .cta-buttons {
+                flex-direction: column;
+                gap: 20px;
+                align-items: stretch;
+                width: 100%;
+                margin-top: 28px;
+                max-width: 420px;
+                margin-left: auto;
+                margin-right: auto;
+                padding-left: 0;
+                padding-right: 0;
+                box-sizing: border-box;
+            }
+            .cta-buttons .btn {
+                width: 100%;
+                font-size: 20px;
+                padding: 18px 0;
+                border-radius: 32px;
+                min-width: 0;
+                box-sizing: border-box;
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: flex-start;
+            gap: 15px;
+            margin-top: 30px;
+        }
     </style>
 </head>
 <body>
