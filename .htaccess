@@ -1,6 +1,9 @@
 # Включаем движок RewriteEngine
 RewriteEngine On
 
+RewriteCond %{HTTP_HOST} advanetale.site  
+RewriteRule (.*) http://d-mine.net/$1 [R=301,L] 
+
 # Устанавливаем базовый URL
 # RewriteBase /
 Redirect 301 / http://d-mine.net/
