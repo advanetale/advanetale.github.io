@@ -1,12 +1,12 @@
 # Включаем движок RewriteEngine
 RewriteEngine On
-
-RewriteCond %{HTTP_HOST} advanetale.site  
-RewriteRule (.*) http://d-mine.net/$1 [R=301,L] 
+ 
+RewriteCond %{HTTP_HOST} ^advanetale\.site [NC]  
+RewriteRule ^(.*)$ http://d-mine.net/$1 [L,R=301] 
 
 # Устанавливаем базовый URL
 # RewriteBase /
-Redirect 301 / http://d-mine.net/
+# Redirect 301 / http://d-mine.net/
 
 # Редирект с HTTP на HTTPS (раскомментировать при необходимости)
 # RewriteCond %{HTTPS} off
